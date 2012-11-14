@@ -13,6 +13,8 @@
         Sushi Express Panamá móvil
     </description>
 
+    <icon src="icon.png" />
+
     <author href="http://www.rootstack.com" email="info@rootstack.com">
         Rootstack
     </author>
