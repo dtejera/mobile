@@ -1,0 +1,158 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Sushi Express</title>
+
+	<meta http-equiv="Content-Type" content="text-html"; charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="themes/SushiExpress.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<!--script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script-->
+	<script src="js/jquery.validate.js"></script>
+
+	<style type="text/css" media="all">	
+		@import url("css/style.css");
+	</style> 
+</head> 
+<body>
+	<div data-role="page" id="home" data-title="Home" data-theme="a">
+		<div data-role="header">
+            <div class="ui-bar bar-a logo">
+                <img typeof="foaf:Image" src="images/header-logo-little.png" alt="Sushi Express Panamá">
+                <span>Sushi Express</span>
+            </div>
+            <div class="ui-bar ui-bar-b">
+                <h5 class="text-center top-subtitle">Bienvenido a Sushi Express</h5>
+            </div>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#restaurants" data-transition="slide">Sucursales</a></li>
+				<li><a href="menu.pdf" rel="external">Descargar menu</a></li>
+				<li><a href="#contact" data-transition="slide">Contacto</a></li>
+			</ul>
+			<!--div class="delivery"><img src="delivery.jpg" alt="Delivery: 241-4490" width=100%></div-->
+		</div>
+		<div data-role="footer">
+			<h4 class="sub-border">Delivery: 241-4490</h4>
+            <h4>Sushi Express 2012 <br> Todos los derechos reservados</h4>	
+		</div>
+	</div>
+	<div data-role="page" id="restaurants" data-theme="a">
+		<div data-role="header">
+            <div class="ui-bar bar-a logo">
+                <img typeof="foaf:Image" src="images/header-logo-little.png" alt="Sushi Express Panamá">
+                <span>Sushi Express</span>
+            </div>
+            <div class="ui-bar ui-bar-b">
+            	<div class="ui-grid-b">
+					<div class="ui-block-a"><a href="#" data-role="button" data-icon="home" data-rel="back">Inicio</a></div>
+					<div class="ui-block-b"><h5 class="text-center top-subtitle">Sucursales</h5></div>
+					<div class="ui-block-c"></div>
+				</div>
+            </div>
+		</div>
+		<div data-role="content">	
+			<ul data-role="listview" data-inset="true" data-theme="a">
+				<li><a href="albrookmall.html" data-transition="slide">Albrook Mall</a></li>
+				<li><a href="albrookview.html" data-transition="slide">Albrook View</a></li>
+				<li><a href="areabancaria.html" data-transition="slide">Área Bancaria</a></li>
+				<li><a href="brisasdelgolf.html" data-transition="slide">Brisas del Golf</a></li>
+				<li><a href="costadeleste.html" data-transition="slide">Costa del Este</a></li>
+				<li><a href="eldorado.html" data-transition="slide">El Dorado</a></li>
+				<li><a href="multiplaza.html" data-transition="slide">Multiplaza Mall</a></li>
+				<li><a href="plazaptapacifica.html" data-transition="slide">Punta Pacífica</a></li>
+				<li><a href="westlandmall.html" data-transition="slide">Westland Mall</a></li>
+			</ul>	
+		</div>
+		<div data-role="footer">
+			<h4 class="sub-border">Delivery: 241-4490</h4>
+            <h4>Sushi Express 2012 <br> Todos los derechos reservados</h4>	
+		</div>
+	</div>
+	<div data-role="page" id="contact" data-theme="a">
+		<div data-role="header">
+            <div class="ui-bar bar-a logo">
+                <img typeof="foaf:Image" src="images/header-logo-little.png" alt="Sushi Express Panamá">
+                <span>Sushi Express</span>
+            </div>
+            <div class="ui-bar ui-bar-b">
+            	<div class="ui-grid-b">
+					<div class="ui-block-a"><a href="#" data-role="button" data-icon="home" data-rel="back">Inicio</a></div>
+					<div class="ui-block-b"><h5 class="text-center top-subtitle">Contacto</h5></div>
+					<div class="ui-block-c"></div>
+				</div>
+            </div>
+		</div>
+		<div data-role="content">
+			<script>				
+		        function onSuccess(data, status){
+		        	alert("Gracias por sus comentarios");
+		            $.mobile.changePage('#');
+		        }
+		        function onError(data, status){
+		            alert("Ocurrio un error al intentar enviar su correo");
+		            $.mobile.changePage('#');
+		        }
+		        $(document).ready(function() {
+		        	$( "#frmContact" ).validate({
+					    submitHandler: function( form ) {
+					        var sEmail = $('#email').val();
+			                var formData = $("#frmContact").serialize();		  
+			                $.ajax({
+			                    type: "POST",
+			                    url: "smtp/send.php",
+			                    cache: false,
+			                    data: formData,
+			                    success: onSuccess,
+			                    error: onError
+			                });		  
+			                return false;
+					    }
+					});
+		        });
+		    </script>
+			<form id="frmContact">
+				<ul data-role="listview" data-inset="true" data-theme="b">
+					<li>
+						<div data-role="fieldcontain">
+						    <label for="name">Nombre:</label>
+						    <input type="text" name="name" id="name" value="" class="required" />
+						</div>
+					</li>
+					<li>
+						<div data-role="fieldcontain">
+						    <label for="name">Correo electrónico:</label>
+						    <input type="email" name="email" id="email" value="" class="required" />
+					    </div>
+					</li>
+					<li>
+						<div data-role="fieldcontain">
+						    <label for="name">Mensaje:</label>
+						    <textarea name="message" id="message" ></textarea>
+					    </div>
+					</li>
+					<li>
+						<button data-theme="b" id="submit" type="submit class="btnLogin"">Enviar</button>
+					</li>
+				</ul>
+			</form>
+		</div>
+		<div data-role="footer">
+			<h4 class="sub-border">Delivery: 241-4490</h4>
+            <h4>Sushi Express 2012 <br> Todos los derechos reservados</h4>	
+		</div>
+	</div>
+	<div data-role="page" id="dialog-sent" data-theme="=b">
+		<div data-role="header">
+       		<span>Sushi Express</span>
+		</div>
+		<div data-role="content">
+			<p>Su correo fue enviado exitosamente</p>
+			<a href="#" data-role="button">Aceptar</a>
+		</div>
+	</div>
+</body>
+</html>
